@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+      - name: Package
+        shell: bash
+        run: |
+          mkdir -p dist
+          cp target/${{ matrix.target }}/release/core dist/loom-core-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/loom-cli dist/loom-cli-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/loom-tui dist/loom-tui-${{ matrix.target }}
+          cp -r config dist/
+          cp -r docs dist/
+          tar czf loom-os-${{ matrix.target }}.tar.gz -C dist .
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: loom-os-${{ matrix.target }}
+          path: loom-os-${{ matrix.target }}.tar.gz

@@ -1,0 +1,15 @@
+[package]
+name = "loom-tui"
+version = "0.2.0"
+edition = "2021"
+authors = ["Loom OS Contributors"]
+description = "Terminal User Interface for Loom OS"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+shared = { path = "../shared" }
+tokio = { workspace = true }
+ratatui = "0.24"
+crossterm = "0.27"
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,13 @@
+[package]
+name = "video-pipeline"
+version = "0.1.0"
+edition = "2021"
+authors = ["Loom OS Contributors"]
+description = "Loom OS Plugin: Video Pipeline"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+shared = { path = "../../shared" }
+sdk = { path = "../../sdk" }
+serde = { workspace = true }
+serde_json = { workspace = true }

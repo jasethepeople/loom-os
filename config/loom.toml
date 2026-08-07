@@ -1,0 +1,27 @@
+# Loom OS Configuration
+# Place this file in your working directory or set LOOM_CONFIG_PATH
+
+[llm]
+model_path = "./models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+tokenizer_path = "./models/tokenizer.json"
+max_tokens = 1024
+temperature = 0.7
+top_p = 0.9
+
+[gpu]
+backend = "vulkan"  # vulkan | metal | dx12 | webgpu
+shader_cache_size = 50
+
+[ipc]
+transport = "mpsc"  # mpsc | nng | uds
+buffer_size = 1024
+nng_address = "tcp://127.0.0.1:9001"
+uds_path = "/tmp/loom.sock"
+
+[plugins]
+auto_reload = true
+wasm_dir = "./plugins/bin"
+
+[logging]
+level = "info"  # trace | debug | info | warn | error
+format = "pretty"  # pretty | json | compact

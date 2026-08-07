@@ -1,0 +1,17 @@
+[package]
+name = "loom-cli"
+version = "0.2.0"
+edition = "2021"
+authors = ["Loom OS Contributors"]
+description = "Command-line interface for Loom OS"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+shared = { path = "../shared" }
+clap = { version = "4.4", features = ["derive"] }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }

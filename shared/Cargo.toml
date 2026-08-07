@@ -1,0 +1,15 @@
+[package]
+name = "shared"
+version = "0.2.0"
+edition = "2021"
+authors = ["Loom OS Contributors"]
+description = "Canonical types and traits for the Loom OS plugin ecosystem"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yourusername/loom-os"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+tokio = { workspace = true }
